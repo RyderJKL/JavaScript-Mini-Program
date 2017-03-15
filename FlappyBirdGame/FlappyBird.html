@@ -1,18 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Flappy Bird</title>
-	<link type="text/css" rel="stylesheet" href="FlappyBird.css" />	
-</head>
-<body>
-
-	<div id="gameBox">
-		<div id="bird">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;padding: 0;
+			}
+			#warp{
+				width: 343px;height: 480px;margin: 100px auto;background: url(img/bg.jpg);position: relative;
+				overflow: hidden;
+			}
+			#c{
+				position: absolute;top:423px;left: 0;width: 800px;
+			}
+			.c1{
+				left:343px;
+			}
+			img{
+				position: absolute;
+			}
+			#xn{
+				left:80px;top:200px;
+			}
+			.bgd{
+				background: url(img/up_mod.png);width: 62px;position: absolute;
+			}
+			.bgu{
+				background: url(img/down_mod.png);width: 62px;position: absolute;
+			}
+			#gameOver{
+				width: 270px;height: 200px;position: absolute;margin: 100px 35px;z-index: 10;display: none;
+			}
+			#Gd{
+				top:0;
+			}
+			#Gu{
+				bottom: 0;
+			}
+			#fen{
+				position: absolute;bottom: 30px;left:35px;line-height: 50px;font-size: 20px;font-weight: bold;
+				width: 50px;text-align: center;
+			}
+			#kkk{
+				position: absolute;top:200px;left:130px;z-index: 9;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+				<img src="img/start.jpg" id="kkk"/>	
+			<div id="gameOver">
+				<img src="img/game_over.jpg" id="Gd"/>
+				<img src="img/message.jpg"/ id = "Gu">
+				<p id="fen"></p>
+			</div>
+			<img src="img/bird0.png" id="xn" />
+			<div id="c"><img src="img/banner.jpg"/ ><img src="img/banner.jpg" class="c1"/></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var warp =  document.querySelector("#warp");
+		var c = document.querySelector("#c");
+		var xn = document.querySelector("#xn");
+		var Gover = document.querySelector("#gameOver")
+		var fenv = document.querySelector("#fen");
+		var kai = document.querySelector("#kkk");
+		var down = ["img/down_bird0.png","img/down_bird1.png"] ;
+		var up = ["img/up_bird0.png","img/up_bird1.png"]
+		var L = [];
+		var num = 0;
+		var timer1,timer2,timer3;
+		var n = 0;
+		var y = xn.offsetTop;
+		var x = xn.offsetLeft;
+		var bol1 = true;
+		var fen = 0;
+			timer4 = setInterval(function(){
+				if(bol1){
+					c.style.left = c.offsetLeft - 5 + "px";
+					if(c.offsetLeft <= -343){
+						c.style.left = 0 + "px";
+					}
+				}
+			
+		},30)
+		function guandao(){
+			var bol = true;
+			var h = rand(100,250);
+			var div1 = document.createElement("div");
+			var img1 = document.createElement("img");
+			div1.className = "bgd";
+			img1.src = "img/up_pipe.png";
+			div1.style.height = h + "px";
+			div1.style.top = 0 + "px";
+			img1.style.bottom = 0 + "px";
+			div1.style.left = 343 + "px";
+			div1.appendChild(img1);
+			warp.appendChild(div1);
+			var div2 = document.createElement("div");
+			var img2 = document.createElement("img");
+			div2.className = "bgu";
+			img2.src = "img/down_pipe.png";
+			div2.style.height = 423 - 120 - h + "px";
+			div2.style.bottom = 80 - 23 + "px";
+			img2.style.top = 0 + "px";
+			div2.style.left = 343 + "px";
+			div2.appendChild(img2);
+			warp.appendChild(div2);
+			var tx = div1.offsetLeft;
+			var timer = setInterval(function(){
+				if(bol1){
+						tx-=5
+					div1.style.left = tx + "px";
+					div2.style.left = tx + "px";
+					if((x >= tx - 40 && x <= tx + 62) && (y <= h || y + 30 >= h + 120)
+					){
+					
+						bol1 = false;
+						fenf();
+						clearInterval(timer);
+						clearInterval(timer1);
+						clearInterval(timer3);
+					}
+					if(tx < x - 62 ){
+						if(bol){
+							fen++;
+							bol = false;
+						}
+					}
+					if(tx <= -60){
+						warp.removeChild(div1);
+						warp.removeChild(div2);
+						clearInterval(timer);
+					}				
+				}				
+			},30)
+		}
+		kai.onclick = function(ev){
+			kai.style.display = "none";
+			ev.stopPropagation();
+			timer3 = setInterval(function(){
+				guandao();
+			},1300)
+			timer1 = setInterval(function(){
+				if(bol1){
+					luo();
+				}
+				
+			},30)
+			document.documentElement.onclick = function(ev){
+				if(bol1){
+					ev.preventDefault();
+					clearInterval(timer1);
+					clearInterval(timer2);
+					var step = 0;
+					timer2 = setInterval(function(){
+						step++;
+						if(step >= 5){
+							clearInterval(timer2);
+							timer1 = setInterval(function(){
+								luo();
+							},30)
+						}
+						sheng();
+					},30)
+				}	
+				}
+				
+		}
 		
-		</div>		
-		<button id="btnStart">Start</button>
-	</div>	
-</body>
-<script type="text/javascript" src="FlappyBird.js"></script>
+		
+		
+		
+		function luo(){
+			if(n >= 2){
+				n = 0;
+			}
+			y+=2;
+			xn.style.top = y + "px";
+			xn.src = down[n];
+			n++;
+			if(xn.offsetTop >= 393){
+				
+			}
+		}
+		function sheng(){
+			if(n >= 2){
+				n = 0;
+			}
+			y-=6;
+			xn.style.top = y + "px";
+			xn.src = up[n];
+			n++;
+			if(xn.offsetTop <= 0){
+				fenf();
+				clearInterval(timer);
+
+				clearInterval(timer3);
+			}
+		}
+		function rand(max,min){
+			return Math.random()*(max - min + 1) + min;
+		}
+		function fenf(){
+			Gover.style.display = "block";
+			fenv.innerHTML = fen;
+		}
+		document.documentElement.onmousedown = function(ev){
+			ev.preventDefault()
+		}
+		document.documentElement.onmouseup = function(ev){
+			ev.preventDefault()
+		}
+	</script>
 </html>

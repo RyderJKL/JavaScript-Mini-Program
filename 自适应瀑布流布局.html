@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;padding: 0;
+			}
+			ul{
+				position: relative;
+			}
+			li{
+				position: absolute;width: 200px;list-style: none;text-align: center;border: 1px solid black;box-sizing: border-box;
+				transition: all 3s; 
+			}
+		</style>
+	</head>
+	<body>
+		<ul></ul>
+	</body>
+	<script type="text/javascript">
+		let ul = document.querySelector("ul");//获取li的载体
+		let num = 0;//设置li的innerHTML的值
+		let heightArr = [];//声明一个高度数组   用于存储每一列的高度
+		window.onresize = function(){//窗口大小监听事件
+			getCols();
+			let lis = document.querySelectorAll("li");
+			for (let i = 0 ; i < lis.length ; i++) {
+				setPos(lis[i])
+			}
+		}
+		function createLi(){
+			let li = document.createElement("li");
+			let h = rand(200,100);
+			li.style.height = h+"px";
+			li.style.lineHeight = h+"px";
+			li.innerHTML = num;
+			ul.appendChild(li);
+			setPos(li);
+		}
+		function getCols(){
+			let cw = document.documentElement.clientWidth;//获取窗口宽度
+			let cols =parseInt(cw/200);//计算一行最多展示多少列
+			heightArr = [];//每次调用 getCols函数时清空heightArr数组
+			for (let i = 0 ; i < cols ; i ++) {
+				heightArr[i]=0;//设置每列初始高度为0
+			}
+		}
+		getCols()
+		function setPos(ele){
+			let min = heightArr[0];//假设第一个值最小
+			for (let i = 0 ; i < heightArr.length ; i++) {
+				min = Math.min(min,heightArr[i])//获取到真正的最小值
+			}
+			let index = heightArr.indexOf(min);//查询最小值在高度数组中的下标
+			ele.style.left = index*200+"px";//设置li的left值  就等于最小值对应的数组下标值乘以li的宽度；
+			ele.style.top = min+"px";//设置li的top值  就等于高度数组的最小值；
+			heightArr[index]+=ele.offsetHeight;//将高度数组中的最小值+li的高度
+		}
+		function rand(max,min){
+			return parseInt(Math.random()*(max-min)+min)
+		}
+		for (let i = 0 ; i < 40 ; i++) {
+			num++;
+			createLi()
+		}
+	</script>
+</html>

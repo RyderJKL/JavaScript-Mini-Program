@@ -18,21 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jQSwiper.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jQuery碎片/jQSwiper.html">
+      <file leaf-file-name="自适应瀑布流布局.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/自适应瀑布流布局.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+            <state relative-caret-position="60">
+              <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -76,6 +66,7 @@
         <option value="$PROJECT_DIR$/Canvas动画/Canvas版时钟(2).html" />
         <option value="$PROJECT_DIR$/JQuery碎片/JQSwiper.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/自适应瀑布流布局.html" />
       </list>
     </option>
   </component>
@@ -86,7 +77,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="449" />
+    <option name="x" value="521" />
+    <option name="y" value="16" />
     <option name="width" value="878" />
     <option name="height" value="625" />
   </component>
@@ -137,18 +129,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Git-Repository\JavaScript-Mini-Program" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\JQuery碎片" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\JavaScript碎片" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\Canvas动画" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\lib" />
-      <recent name="D:\Git-Repository\JavaScript-Mini-Program\OneHundredGame" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Git-Repository\JavaScript-Mini-Program\FlappyBirdGame" />
+      <recent name="D:\Git-Repository\JavaScript-Mini-Program\jQuery碎片" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\Canvas动画" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\媒体插件" />
       <recent name="D:\Git-Repository\JavaScript-Mini-Program\3D动画" />
-      <recent name="D:\Git-Repository\JavaScript-Mini-Program\Ajax兼容代码" />
-      <recent name="D:\Git-Repository\JavaScript-Mini-Program\2048Game" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.cubs.html">
@@ -232,18 +224,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1489540368854</updated>
-      <workItem from="1489540370971" duration="6308000" />
+      <workItem from="1489540370971" duration="7160000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6308000" />
+    <option name="totallyTimeSpent" value="7160000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="449" y="0" width="878" height="625" extended-state="0" />
-    <editor active="true" />
+    <frame x="521" y="16" width="878" height="625" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2904762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2904762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -423,6 +415,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jQuery碎片/jQSwiper.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -431,10 +431,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/FlappyBirdGame/FlappyBird.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlappyBirdGame/FlappyBird.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/自适应瀑布流布局.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
           <folding />
         </state>
       </provider>
