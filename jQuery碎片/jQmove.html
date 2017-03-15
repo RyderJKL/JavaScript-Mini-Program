@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;padding: 0;
+			}
+			div{
+				width: 100px;height: 100px;background: red;position: absolute;top: 50px;left: 50px;
+			}
+			p{
+				position: absolute;width: 150px;height: 150px;top: 150px;background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<p></p>
+	</body>
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$.fn.extend({
+			move:function(options){
+				var start={
+					nowleft:0,
+					nowtop:0,
+					targetL:0,
+					targetT:0,
+					time:0,
+					speed:"linear",
+					backFn:null,
+					eventType:"click"
+				}
+				var _start = $.extend(start,options);
+				console.log(_start)
+//				_start.ele = $(this);
+				$(this).on(_start.eventType,function(){
+					$(this).animate({
+					left:_start.targetL,
+					top:_start.targetT
+				},_start.time,_start.speed,_start.backFn)
+				})
+			}
+		})
+		$("p").move({
+			nowleft:$("p").offset().left,
+			nowtop:$("p").offset().top,
+			targetL:500,
+			targetT:500,
+			time:2000,
+			backFn:function(){
+				alert(1)
+			}
+		})
+	</script>
+</html>

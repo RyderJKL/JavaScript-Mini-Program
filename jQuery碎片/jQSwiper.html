@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery放大镜</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        #middle {
+            position: absolute;
+            width: 9999px;
+        }
+
+        #middle img {
+            float: left;
+            width: 1000px;
+        }
+
+        #pages-bottom {
+            position: absolute;
+            bottom: 15px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .pages {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: black;
+            /*float:left;*/
+            display: inline-block;
+            color: white;
+            list-style: none;
+            line-height: 18px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        #pages-center {
+            position: absolute;
+            top: 50%;
+            margin-top: -31px;
+            width: 100%;
+            display: none;
+        }
+
+        #pages-center a {
+            height: 62px;
+            width: 30px;
+            background: rgba(0, 0, 0, .7);
+            /*opacity: 0.7;
+            background: black;*/
+            float: left;
+            text-align: center;
+            line-height: 62px;
+            color: white;
+            text-decoration: none;
+        }
+
+        #pages-center #next {
+            float: right;
+        }
+
+        .selected {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="middle">
+        <img src="img/01.jpg" alt=""/>
+        <img src="img/02.jpg" alt=""/>
+        <img src="img/03.jpg" alt=""/>
+        <img src="img/04.jpg" alt=""/>
+        <img src="img/01.jpg" alt=""/>
+    </div>
+    <ul id="pages-bottom">
+        <li class="pages selected">1</li>
+        <li class="pages">2</li>
+        <li class="pages">3</li>
+        <li class="pages">4</li>
+    </ul>
+    <div id="pages-center">
+        <a href="javascript:void(0)" class="btn"
+           id="prev">&lt;</a>
+        <a href="#" class="btn" id="next">&gt;</a>
+    </div>
+</div>
+</body>
+<script src="lib/jquery-1.11.1.min.js"
+        type="text/javascript"
+        charset="utf-8"></script>
+<script type="text/javascript">
+	$("#wrap").on("mouseenter", function () {
+		$("#pages-center").show()
+	})
+	var num = 0;
+	function autoMove() {
+		num++;
+		$("#middle").delay(100).animate({
+			left: -1000 * num
+		}, 1500, "linear", function () {
+			if (num > 3) {
+				num = 0
+				$("#middle").css("left", 0)
+			}
+			$("#pages-bottom > li").eq(num).attr("class", "pages selected").siblings().attr("class", "pages");
+			autoMove()
+		})
+	}
+	autoMove()
+	$("#pages-bottom").on("click", "li", function () {
+		$("#middle").stop()
+		$("#middle").stop()
+		num = $(this).index()
+		$("#middle").animate({
+			left: -num * 1000
+		}, 1500, "linear", function () {
+			autoMove()
+		})
+		$("#pages-bottom>li").eq(num).attr("class", "pages selected").siblings().attr("class", "pages");
+	})
+	$("#pages-center").on("click", "#prev", function () {
+		$("#middle").stop()
+		$("#middle").stop()
+		num--;
+		if (num < 0) {
+			num = 3
+		}
+		$("#middle").animate({
+			left: -num * 1000
+		}, 1500, "linear", function () {
+			num--;
+			autoMove()
+		})
+		$("#pages-bottom>li").eq(num).attr("class", "pages selected").siblings().attr("class", "pages");
+	})
+	$("#pages-center").on("click", "#next", function () {
+		$("#middle").stop()
+		$("#middle").stop()
+		num++;
+		if (num < 0) {
+			num = 3
+		} else if (num > 3) {
+			num = 0
+		}
+		$("#middle").animate({
+			left: -num * 1000
+		}, 1500, "linear", function () {
+			num--;
+			autoMove()
+		})
+		$("#pages-bottom>li").eq(num).attr("class", "pages selected").siblings().attr("class", "pages");
+	})
+</script>
+</html>

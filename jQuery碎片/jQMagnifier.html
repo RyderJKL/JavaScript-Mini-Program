@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Magnifier</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{
+		box-sizing: border-box;
+	}
+	#mangifierBox{
+		width: 800px;
+		height: 400px;
+		margin: 100px auto;
+		border:1px solid red;
+	}
+
+	#smallBox{
+		width: 200px;
+		height: 200px;
+		border:1px solid green;
+		float: left;
+		position: relative;
+	}
+
+	#smallBox img{
+		width: 100%;
+		height: 100%;
+	}
+	#bigBox{
+		width: 200px;
+		height: 200px;
+		border:1px solid red;
+		float: right;
+		position: relative;
+		overflow: hidden;
+	}
+
+	#bigBox img{
+		position: absolute;
+	}
+
+	#mangifier{
+		width: 20px;
+		height: 20px;
+		opacity: 0.5;
+		background: black;
+		position: absolute;
+	}
+</style>
+</head>
+<body>
+    <div id="mangifierBox">
+    	<div id="smallBox">
+    		<div id="mangifier"></div>
+    		<img src="../img/1.jpg">
+    	</div>
+    	<div id="bigBox">
+    		<img id="targetImg"src="../img/1.jpg" alt="">
+    	</div>
+    </div>
+</body>
+<script type="text/javascript" src="../jquery.min.js" ></script>
+<script type="text/javascript">
+ 	$.fn.extend({
+ 		mangifier:function(options){
+ 			var power = {
+ 				eventStart: 'mousedown',
+ 				eventEnd:'mouseup',
+ 				smallBox:null,
+ 				bigBox:null,
+ 			}
+
+ 			var _power = $.extend(true,power,options);
+ 			$(this).on(_power.eventStart,function(event){
+ 				var fierInnerX = event.clientX - $(this).offset().left;
+ 				var fierInnerY = event.clientY - $(this).offset().top;
+ 				var thisFier = $(this);
+
+ 				_power.smallBox.on('mousemove',function(event){
+ 						var fierPositionX = event.clientX - fierInnerX;
+ 						var fierPositionY = event.clientY-fierInnerY;
+ 						if(fierPositionX<0){
+ 							fierPositionX = 0
+ 						}else if(fierPositionX >$(this).width()-thisFier.width()){
+ 							fierPositionX = $(this).width() - thisFier.width()
+ 						}
+
+ 						if(fierPositionY<0){
+ 							fierPositionY = 0
+ 						}else if(fierPositionY > $(this).height() - thisFier.height()){
+ 							fierPositionY = $(this).height() - thisFier.height()
+ 						}
+
+ 						thisFier.css({
+ 							'left':fierPositionX,
+ 							'top':fierPositionY
+ 						})
+
+ 						_power.bigBox.css({
+ 							left:-fierPositionX*(_power.bigBox.width()/_power.smallBox.width()),
+ 							top:-fierPositionY*(_power.bigBox.height()/_power.smallBox.height())
+ 						})
+ 				})
+ 			})
+ 			$(this).on(_power.eventEnd,function(){
+ 				_power.smallBox.off()
+ 			})
+ 		}
+ 	})
+
+ 	$("#mangifier").power({
+ 		smallBox:$("#smallBox"),
+ 		bigBox:$("#targetImg"),
+ 		fier:$("mangifier")
+ 	})
+</script>
+</html>
