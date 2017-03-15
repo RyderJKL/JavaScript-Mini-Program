@@ -1,0 +1,251 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2048</title>
+<style type="text/css">
+		*{
+			margin: 0;padding: 0;
+		}
+		#div2048
+		{
+		    width: 500px;
+		    height: 500px;
+		    background-color: #b8af9e;
+		    margin: 0 auto;
+		    position: relative;
+		}
+		#start
+		{
+		    width: 500px;
+		    height: 500px;
+		    line-height: 500px;
+		    display: block;
+		    text-align: center;
+		    font-size: 30px;
+		    background: #f2b179;
+		    color: #FFFFFF;
+		}
+		#div2048 div.tile
+		{
+		    margin: 20px 0px 0px 20px;
+		    width: 100px;
+		    height: 40px;
+		    padding: 30px 0;
+		    font-size: 40px;
+		    line-height: 40px;
+		    text-align: center;
+		    float: left;
+		}
+		#div2048 div.tile0{
+		    background: #ccc0b2;
+		}
+		#div2048 div.tile2
+		{
+		    color: #7c736a;
+		    background: #eee4da;
+		}
+		#div2048 div.tile4
+		{
+		    color: #7c736a;
+		    background: #ece0c8;
+		}
+		#div2048 div.tile8
+		{
+		    color: #fff7eb;
+		    background: #f2b179;
+		}
+		#div2048 div.tile16
+		{
+		    color:#fff7eb;
+		    background:#f59563;
+		}
+		#div2048 div.tile32
+		{
+		    color:#fff7eb;
+		    background:#f57c5f;
+		}
+		#div2048 div.tile64
+		{
+		    color:#fff7eb;
+		    background:#f65d3b;
+		}
+		#div2048 div.tile128
+		{
+		    color:#fff7eb;
+		    background:#edce71;
+		}
+		#div2048 div.tile256
+		{
+		    color:#fff7eb;
+		    background:#edcc61;
+		}
+		#div2048 div.tile512
+		{
+		    color:#fff7eb;
+		    background:#ecc850;
+		}
+		#div2048 div.tile1024
+		{
+		    color:#fff7eb;
+		    background:#edc53f;
+		}
+		#div2048 div.tile2048
+		{
+		    color:#fff7eb;
+		    background:#eec22e;
+		}
+</style>
+</head>
+<body>
+    <div id="div2048">
+        <a id="start">tap to start :-)</a>
+    </div>
+</body>
+<script type="text/javascript">
+	function Game2048(container){
+		this.container = container;//装载格子的容器
+		this.tiles = new Array(16)//创建数组长度为16的数组用来存放格子元素
+	}
+	
+	Game2048.prototype = {
+		init:function(){
+			for (let i = 0 ; i < this.tiles.length; i++) {
+				let tile = this.createTile(0);//创建格子
+				tile.setAttribute("index",i);//设置格子的index属性对应它的索引值
+				this.container.appendChild(tile);//将创建好的格子放置到格子容器中
+				this.tiles[i]=tile;//将格子放进格子数组中
+			}
+			this.randTile();//随机哪个格子出数字    因为第一次打开时随机两个数字  所以调用两次
+			this.randTile();//随机哪个格子出数字
+		},
+
+		createTile:function(val){//创建格子元素方法
+			let tile = document.createElement("div");
+			this.setTile(tile,val);
+			return tile;//返回格子
+		},
+		setTile:function(tile,val){//设置格子样式及内容
+			tile.className = "tile tile"+val;
+			tile.setAttribute("val",val);//设置格子的自定义属性val的属性值为val；
+			tile.innerHTML = val>0?val:'';
+		},
+		randTile:function(){//随机格子出数字
+			let zeroTiles = [];//创建空格子数组；装载所有空格子
+			for (let i = 0 ; i <this.tiles.length;i++) {//遍历所有格子
+				if (this.tiles[i].getAttribute('val')==0) {//判断格子是否为空格子
+					zeroTiles.push(this.tiles[i]);//是的话推入空格子数组
+				}
+			}
+			let rTile = zeroTiles[parseInt(Math.random()*zeroTiles.length)];//随机选出一个空格子
+			this.setTile(rTile,Math.random()<0.8?2:4)//设置空格子的内容2或4
+		},
+		move:function(direction){
+        let j;//定义j变量，用来寻找同行或同列上相邻的格子
+        switch(direction){
+            case 38://上
+                for(let i = 4, len = this.tiles.length; i < len; i++){
+                    j = i;
+                    while(j >= 4){//遍历同列上相邻的格子
+                        this.merge(this.tiles[j - 4], this.tiles[j]);//向上移动时更新同列上相邻格子的内容
+                        j -= 4;
+                    }
+                }
+                break;
+            case 40://下
+                for(let i = 11; i >= 0; i--){//遍历同列上相邻的格子；
+                    j = i;
+                    while(j <= 11){
+                        this.merge(this.tiles[j + 4], this.tiles[j]);//向下移动时更新同列上相邻格子的内容
+                        j += 4;
+                    }
+                }
+                break;
+            case 37://左
+                for(let i = 1, len = this.tiles.length; i < len; i++){
+                    j = i;
+                    while(j % 4 != 0){//遍历同行上相邻的格子(排除最左边的一列)
+                        this.merge(this.tiles[j - 1], this.tiles[j]);//向左移动时更新同行上相邻格子的内容
+                        j -= 1;
+                    }
+                }
+                break;
+            case 39://右
+                for(let i = 14; i >= 0; i--){
+                    j = i;
+                    while(j % 4 != 3){//遍历同行上相邻的格子(排除最右边的一列)
+                        this.merge(this.tiles[j + 1], this.tiles[j]);//向右移动时更新同行上相邻格子的内容
+                        j += 1;
+                    }
+                }
+                break;
+       		 }
+       		 this.randTile();//移动完后会让空格子随机出新数字2||4；
+   		 },
+   		 merge: function(prevTile, currTile){//用来更新格子内容的方法；
+	        let prevVal = prevTile.getAttribute('val');
+	        let currVal = currTile.getAttribute('val');
+	        if(currVal != 0){//当前格子不是空格子的状态下执行的代码
+	            if(prevVal == 0){//如果下一个相邻格子为空格子
+	                this.setTile(prevTile, currVal);//设置下一个空格子的值为当前格子的值
+	                this.setTile(currTile, 0);//当前格子的值为0；
+	            }
+	            else if(prevVal == currVal){//如果下一个格子值=当前格子的值
+	                this.setTile(prevTile, prevVal * 2);//将下一个格子的值乘以2
+	                this.setTile(currTile, 0);//设置当前格子值为0
+           		 }
+        	}
+   		 },
+   		 equal: function(tile1, tile2){//判定两个格子的值是否相等的方法
+	        return tile1.getAttribute('val') == tile2.getAttribute('val');//判定两个格子的值是否相等
+	     },
+	     over: function(){//判定是否游戏结束   游戏结束返回true   不结束返回false；
+	        for(let i = 0, len = this.tiles.length; i < len; i++){
+	        	//判定是否有空格子
+	            if(this.tiles[i].getAttribute('val') == 0){
+	                return false;
+	            }
+	            //判定同行上相邻格子的值是否相等
+	            if(i % 4 != 3){
+	                if(this.equal(this.tiles[i], this.tiles[i + 1])){
+	                    return false;
+	                }
+	            }
+	            //判定同列上相邻格子的值是否相等
+	            if(i < 12){
+	                if(this.equal(this.tiles[i], this.tiles[i + 4])){
+	                    return false;
+	                }
+	            }
+	        }
+	        return true;
+	    },
+	    clean: function(){//返回初始状态的方法
+	        for(let i = 0, len = this.tiles.length; i < len; i++){
+	            this.container.removeChild(this.tiles[i]);
+	        }
+	        this.tiles = new Array(16);
+	    }
+	}
+	let game ; 
+	let container = document.getElementById('div2048');
+    let startBtn = document.getElementById('start');
+	startBtn.onclick = function(){
+		this.style.display  = "none";
+		game = new Game2048(container);
+		game.init()
+	}
+	window.onkeydown = function(ev){
+		let code = ev.keyCode;
+		if (code==37||code ==38||code==39||code ==40) {
+			if (game.over()) {
+				game.clean();
+	            startBtn.style.display = 'block';
+	            startBtn.innerHTML = 'game over, replay?';
+	            return;
+			}
+			game.move(code)
+		}
+	}
+</script>
+</html>
