@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>greywolf</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+			box-sizing: border-box;
+			
+		}
+
+		body {
+			background: deeppink;
+		}
+		#wrapper {
+			width: 320px;
+			height: 480px;
+			position: absolute;
+			left:100px;
+			top:100px;
+		}
+
+		#progressBarBox {
+			position: absolute;
+			background: gray;
+			overflow:hidden;
+			top:66px;
+			left:63px;
+			width:180px;
+			height: 16px;
+		}
+
+		#progressImg{
+			position: absolute;
+		}
+
+		#boxImg {
+			position: absolute;
+			cursor: pointer;
+			height: 101px;
+			width: 108px;		
+			background: none;	
+		}
+
+		#littleBox {
+			position: absolute;
+			cursor: pointer;
+			height: 101px;
+			width:108px;
+			background: none;
+			
+		}
+
+		#scoreBox {
+			position: absolute;
+			left:63px;			
+			font-size: 40px;
+			color: yellowgreen;
+		}
+
+		#zhezhao {
+			position: absolute;
+			height: 480px;
+			width:320px;
+			background: rgba(0,0,0,0.8);
+			display: none;
+			z-index: 100;
+			left:0;
+			top:0;
+
+		}
+
+		#zhezhao > p{
+			position: absolute;
+			top:240px;
+			left:100px;
+			font-size: 20px;
+			color: deeppink;
+		}
+	</style>
+
+</head>
+<body>
+	<div id ="wrapper">
+	<p id="scoreBox">
+		0
+	</p>
+	<img src="img/game_bg.jpg">
+		<div id = "progressBarBox" >
+			<img id = "progressImg" src="img/progress.png">
+		</div>
+		<div id="boxImg">
+			
+		</div>
+		<div id="littleBox">
+			
+		</div>
+		<div id="zhezhao">
+			
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	let boxImg = document.querySelector("#boxImg");
+	let littleBox = document.querySelector("#littleBox");
+	let progressImg = document.querySelector("#progressImg");
+	let scoreBox = document.querySelector("#scoreBox");
+	let zhezhao = document.querySelector("#zhezhao");
+	let wolfImgArr = ["img/h0.png","img/h1.png","img/h2.png","img/h3.png","img/h4.png","img/h5.png","img/h4.png","img/h3.png","img/h2.png","img/h1.png","img/h0.png"];
+	let littlewolfImgArr = ["img/x0.png","img/x1.png","img/x2.png","img/x3.png","img/x4.png","img/x5.png"]
+	let attackWolfImg =  ["img/h6.png","img/h7.png","img/h8.png","img/h9.png"];
+	let attackLittleWolfImgArr = ["img/x6.png","img/x7.png","img/x8.png","img/x9.png"]
+	let holePosition = [];
+	holePosition = [["98px","115px"],["17px","160px"],["15px","220px"],["30px","293px"],["122px","273px"],["207px","295px"],["200px","211px"],
+		["187px","141px"],["100px","185px"]];
+
+	let wolf = null;
+	let littleWolf = null;
+	
+
+	let countDown = 0;
+	let attackWolfTimer = "";
+	let attackLittleWolfTimer ="";
+	let cryWolfInterTimer = "";
+	// 设置定时器，狼来了
+	let littleCryWolfInterTimer = "";
+	let delayCryLittleWolfTimer = ""
+	let delayCryWolfSetTimer ="";
+	let progressTimer = "";
+	
+	let score = 0;
+
+	function cryWolf (){
+		// 大狼来了
+		clearInterval(attackWolfTimer);
+		clearInterval(cryWolfInterTimer);
+		let ranPosition = randNum(holePosition.length,0);
+		boxImg.style.left = holePosition[ranPosition][0];
+		boxImg.style.top = holePosition[ranPosition][1];
+
+		let wolf = document.createElement("img");		
+		boxImg.appendChild(wolf);
+		let isWolfImgIndex = -1;
+		cryWolfInterTimer = setInterval(function(){
+		
+			isWolfImgIndex ++;			
+			if(isWolfImgIndex == wolfImgArr.length){
+				// console.log(img.src);				
+				clearInterval(cryWolfInterTimer);
+				boxImg.innerHTML = "";
+				isWolfImgIndex -= 1;				
+				cryWolf();											
+			}
+			wolf.src = wolfImgArr[isWolfImgIndex]	;			
+		},200);		
+
+		progressTimer = setInterval(function(){		
+		// 进度条
+		countDown --;		
+		if ( countDown <= -180){
+			zhezhao.innerHTML = "<p>最终得分:" + score + "</p>";
+			zhezhao.style.display = "block";
+			clearAllTimer();			
+		}
+		progressImg.style.left =  countDown + "px";
+		},1000);
+}
+
+
+	function cryLittleWolf(){
+		// 小狼来了
+		clearTimeout(delayCryLittleWolfTimer);
+		clearInterval(attackLittleWolfTimer);	
+		clearInterval(littleCryWolfInterTimer);
+		littleBox.innerHTML = "";
+		let ranPosition = randNum(holePosition.length,0);
+		littleBox.style.left = holePosition[ranPosition][0];
+		littleBox.style.top = holePosition[ranPosition][1];
+		
+		let  littleWolf = document.createElement("img");
+		littleBox.appendChild(littleWolf);
+		let isLittleWolfImgIndex = -1;		
+		littleCryWolfInterTimer = setInterval(function(){		 
+
+			isLittleWolfImgIndex ++;			
+			if(isLittleWolfImgIndex == littlewolfImgArr.length){
+				// console.log(img.src);				
+				clearInterval(littleCryWolfInterTimer);
+				littleBox.innerHTML = "";
+				isLittleWolfImgIndex -= 1;
+				delayCryLittleWolfTimer = setTimeout(cryLittleWolf,2000);											
+			}
+			littleWolf.src = littlewolfImgArr[isLittleWolfImgIndex]	;	
+		},200)
+
+		
+	}
+
+
+	function attackWolf(){
+		//攻击大狼
+		clearInterval(cryWolfInterTimer);		
+		clearInterval(attackWolfTimer);
+		score +=1;
+		scoreBox.innerHTML = score;
+		let wolf = document.createElement("img");
+		boxImg.innerHTML = "";	
+		boxImg.appendChild(wolf);
+		let isAttachWolf = -1;
+		attackWolfTimer = setInterval(function(){
+			isAttachWolf ++;
+			// boxImg.appendChild(wolf);
+			if(isAttachWolf == attackWolfImg.length){
+				clearInterval(attackWolfTimer);
+				boxImg.innerHTML = "";				
+				isAttachWolf --;
+				cryWolf();
+			}
+			wolf.src = attackWolfImg[isAttachWolf];
+		},10)
+		
+	}
+
+	function attackLittleWolf(){
+		//攻击小狼		
+		clearTimeout(delayCryLittleWolfTimer);
+		clearInterval(attackLittleWolfTimer);
+		clearInterval(littleCryWolfInterTimer);
+		score +=10;
+		scoreBox.innerHTML = score;
+		let littleWolf = document.createElement("img");
+		littleBox.innerHTML = "";	
+		littleBox.appendChild(littleWolf);
+		let isAttackLittleWolfIndex = -1;
+		attackLittleWolfTimer = setInterval(function(){
+			isAttackLittleWolfIndex ++;
+			// boxImg.appendChild(wolf);
+			if(isAttackLittleWolfIndex == 
+				attackLittleWolfImgArr.length){
+				clearInterval(attackLittleWolfTimer);
+				littleBox.innerHTML = "";				
+				isAttackLittleWolfIndex --;
+				cryLittleWolf();
+			}
+			littleWolf.src = attackLittleWolfImgArr[isAttackLittleWolfIndex];
+		},10)
+		
+	}
+
+	function clearAllTimer(){
+		clearTimeout(delayCryWolfSetTimer);
+		clearInterval(attackWolfTimer);
+		clearInterval(cryWolfInterTimer);	
+		clearInterval(attackLittleWolfTimer);
+		clearInterval(littleCryWolfInterTimer);
+		clearInterval(progressTimer);	
+		clearTimeout(delayCryLittleWolfTimer);
+	}
+
+
+
+	function randNum (max,min){
+		return parseInt(Math.random()*(max - min)+min);
+	}
+
+
+	boxImg.addEventListener("click",attackWolf,false);
+	littleBox.addEventListener("click",attackLittleWolf,false);
+
+	cryWolf();
+	cryLittleWolf();
+
+</script>
+</html>
