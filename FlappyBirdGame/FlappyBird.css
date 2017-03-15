@@ -1,0 +1,51 @@
+*{
+	margin:0;
+	padding:0;
+	background: #58b;
+	box-sizing: border-box;
+	list-style: none;
+}
+
+#gameBox{
+	background: url("img/bg.jpg");
+	height: 480px;
+	width: 343px;
+	margin:100px auto;
+	position: relative;
+	
+}
+
+#bird{
+	background: url(img/bird0.png);
+	height: 26px;
+	width: 40px;
+	position: absolute;
+	top: 240px;
+	left: 10%;
+}
+
+
+.pipeLi {
+	
+	width:62px;
+	height: 422px;
+	margin-right: 15px;
+	position: absolute;
+	bottom:60px;
+	right: 0;
+	background:transparent;
+}
+
+.pipeLi  p {
+	width: 62px;
+	position: absolute;
+	background: url("img/up_mod.png") repeat-y;
+	border:1px solid red;
+
+}
+
+.pipeLi p img {
+	position: absolute;
+	background: url("img/up_mod.png") repeat-y;
+
+}
