@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>JS-计算器</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+	<style type="text/css">
+
+		#calc {
+			width: 200px;
+			background: #333;
+		}
+		#calc a{
+			font-size: 2.5em;
+			display: inline-block;
+			border:1px solid deeppink;
+			padding: .5em .35em .5em;
+
+		}
+		#calc a:hover{
+			background: #58a;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+<button id="fuck">jdfad</button>
+	<input type="text" id="show">
+    <div id="calc">	
+    </div>
+</body>
+<script type="text/javascript" src="" ></script>
+<script type="text/javascript">
+	function Calc(){
+		this.show = document.querySelector("#show")
+	}
+
+	Calc.prototype = {
+		constructor: Calc,
+		createCalculator:function(){
+			let funcBtn = [[1,2,3,'+'],[4,5,6,'-'],[7,8,9,'*'],[0,'C','/','=']]
+			let allA ='';
+			for(let i=0;i<4;i++){
+				for(let j=0;j<4;j++){
+					allA += "<a class='displayer'>"+funcBtn[i][j]+"</a>"
+				}
+			}
+			document.querySelector("#calc").innerHTML = allA;
+			this.showResult()
+		},
+
+		calculate:function(event,demo){
+			let topThis = this;
+			demo.addEventListener('click',function(event){
+				let src = event.target.text
+				if(src == '='){
+					topThis.show.value = eval(topThis.show.value)
+					return
+				}
+				topThis.show.value += src;
+				if(src == 'C'){
+					topThis.show.value = ''
+				}
+
+			})
+		},
+
+		showResult:function(){
+			let display = document.querySelector("#calc");
+			this.calculate("click",display)
+		},		
+	}
+
+	let calculator = new Calc()
+	calculator.createCalculator()
+</script>
+</html>
