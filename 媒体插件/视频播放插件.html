@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>video</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="" rel="stylesheet">
+	<style type="text/css">
+
+		#videoBox{
+			width:600px;
+			height: 500px;
+			position: relative;
+		}
+		#contronlBtn{
+			border:1px solid red;
+			width: 40px;
+			height: 40px;
+		}
+
+		#progressVedio{
+			width: 400px;
+		}
+		
+		#showTime{
+			width: 40px;
+			height: 20px;
+			border:1px solid red;
+			display: block;
+			position: absolute;
+			top:400px;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="videoBox">
+		<video id="videoSource" src="臭屁虫4.mp4" width="400" height="400" controls="controls" autoplay="autoplay" loop="loop" ></video>
+		<span id="showTime"></span>
+		<button id="contronlBtn">播放</button>		
+		<progress id="progressVedio" value="0" max=""></progress>
+		<span id="progressTime"></span>
+		<span id="totalTime"></span>		
+		</div>
+	</body>
+	<script type="text/javascript">
+		var contronlBtn = document.querySelector("#contronlBtn")
+		var videoSource = document.querySelector("#videoSource")
+		var progressVedio = document.querySelector("#progressVedio")
+		var totalTime = document.querySelector("#totalTime")
+		var progressTime = document.querySelector("#progressTime")
+		var showTime = document.querySelector("#showTime")
+
+		var timer = null;
+
+		window.onload = function(){		
+			var countTime = parseInt(videoSource.duration)
+			progressVedio.max = countTime
+			totalTime.innerHTML = "时间:"+ parseInt(countTime/60)+":"+(countTime%60);
+			contronlBtn.onclick = function (){
+				if(videoSource.paused){
+					videoSource.play()
+					contronlBtn.innerHTML = "Pause"
+				}else if(videoSource.play){
+					videoSource.pause()
+			contronlBtn.innerHTML = "Play"
+		}
+	}
+	
+	timer = setInterval(function(){
+		var nowTime =  parseInt(videoSource.currentTime)
+		progressVedio.value = nowTime
+		progressTime.innerHTML = parseInt(nowTime/60) + ":" + (nowTime%60);
+	},1000)
+
+	progressVedio.onmouseover = function(event){
+	 	 var mourseTime = parseInt(countTime/progressVedio.offsetWidth*(event.clientX - progressVedio.offsetLeft))
+	 	 showTime.innerHTML = ""+ parseInt(mourseTime/60)+":"+(mourseTime%60);
+	 	 showTime.style.left = event.clientX + "px"
+	}
+
+	progressVedio.onclick = function(event){
+		videoSource.currentTime = countTime/progressVedio.offsetWidth*(event.clientX - progressVedio.offsetLeft)
+	}
+
+}
+
+</script>
+</html>
