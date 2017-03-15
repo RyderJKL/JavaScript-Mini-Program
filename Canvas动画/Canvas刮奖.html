@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>彩票</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="" rel="stylesheet">
+	<style type="text/css">
+		#myCanvas{
+				
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="320" height="160"></canvas>
+</body>
+<script type="text/javascript" >
+	let drawing = document.querySelector("#myCanvas")
+	let context = drawing.getContext("2d")
+
+	context.save()
+	context.beginPath()
+	context.fillStyle = "green"
+	context.fillRect(0,0,320,160)
+	context.closePath()
+	context.fill()
+	context.restore()
+
+	context.globalCompositeOperation = "destination-out"
+
+	let newImag = new Image()
+	newImag.src = "p_"+parseInt(Math.random()*2)+".jpg"
+
+	newImag.onload = function(){
+		drawing.style.background = "url(p_"+parseInt(Math.random()*2)+".jpg)"
+		drawing.onmousedown = function(event){
+			drawing.onmousemove = function(event){
+				context.save()
+				context.beginPath()
+				context.arc(event.clientX,event.clientY,20,0,Math.PI/180*360)
+				context.closePath()
+				context.fill()
+				context.restore()
+			}
+		}
+	}
+	
+
+	// context.restore()
+</script>
+</html>

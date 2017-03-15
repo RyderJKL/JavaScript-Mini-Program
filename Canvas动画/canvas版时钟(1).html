@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;padding: 0;
+			}
+			canvas{
+				box-shadow: 10px 10px 20px black;
+				position: absolute;left: 50px;top: 50px;
+			}
+			table{
+				width: 700px;height: 500px;position: absolute;left: 50px;top: 50px;border-collapse: collapse;
+			}
+			td{
+				width: 41px;height: 49px;border: 1px dotted #CCCCCC;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+		</table>
+		<canvas id="" width="700" height="500">
+			你的浏览器不支持canvas，请更新；
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		let table = document.querySelector("table");
+		for (let i =0 ; i < 10 ; i++) {
+			let tr = document.createElement("tr");
+			table.appendChild(tr);
+			for (let k = 0 ; k < 14 ; k++) {
+				let td = document.createElement("td");
+				tr.appendChild(td)
+			}
+		}
+		let canvas = document.querySelector("canvas");
+		let ctx = canvas.getContext("2d");
+
+		function draw(){
+		ctx.clearRect(0,0,700,500)
+		ctx.save();
+		ctx.translate(200,200);
+		ctx.save()
+		let deg = 2 * Math.PI / 12;
+		ctx.beginPath()
+		let rgradient = ctx.createRadialGradient(0,0,0,0,0,150);
+		rgradient.addColorStop(0.5,"cyan");
+		rgradient.addColorStop(1,"blue");
+		for(let i = 0 ; i < 13 ; i ++){
+			let x = Math.sin(i*deg);
+			let y = -Math.cos(i*deg);
+			ctx.lineTo(x*150,y*150);
+			ctx.stroke()
+		}
+		ctx.fillStyle = rgradient;
+		ctx.fill()
+		for (let i = 1 ; i < 13 ; i++) {
+			ctx.beginPath()
+			let x1 = Math.sin(i * deg);
+			let y1 = -Math.cos(i * deg);
+			ctx.font = "20px 宋体";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			ctx.fillStyle = "wheat";
+			ctx.fillText(i,x1*120,y1*120)
+		}
+		let deg1 = 2 * Math.PI / 60;
+		for (let i = 0 ; i < 60 ; i ++) {
+			ctx.beginPath()
+			let x2 = Math.sin(i * deg1);
+			let y2 = -Math.cos(i * deg1);
+			ctx.moveTo(x2*145,y2*145);
+			ctx.lineTo(x2*140,y2*140);
+			ctx.stroke()
+		}
+		for (let i = 0 ; i < 12 ; i ++) {
+			ctx.beginPath()
+			let x2 = Math.sin(i * deg);
+			let y2 = -Math.cos(i * deg);
+			ctx.moveTo(x2*145,y2*145);
+			ctx.lineTo(x2*135,y2*135);
+			ctx.stroke()
+		}
+		let time = new Date();
+		let h = time.getHours()
+		let m = time.getMinutes() 
+		let s = time.getSeconds()
+		ctx.rotate(m*Math.PI/30 )
+		ctx.beginPath()
+		ctx.strokeStyle = "blueviolet";
+		ctx.moveTo(0,0);
+		ctx.lineTo(0,-100);
+		ctx.stroke()
+		ctx.restore()
+		ctx.beginPath();
+		ctx.strokeStyle = "blueviolet";
+		ctx.rotate(h*Math.PI/6+m*Math.PI/180*0.5)
+		ctx.moveTo(0,0);
+		ctx.lineTo(0,-80);
+		ctx.stroke()
+		ctx.beginPath()
+		ctx.strokeStyle = "blueviolet"
+		ctx.rotate(s*Math.PI/30);
+		ctx.moveTo(0,0);
+		ctx.lineTo(0,-120);
+		ctx.stroke()
+		ctx.closePath()
+		ctx.restore()
+		ctx.restore()
+		setTimeout(draw,1000)
+		}
+		draw()
+	</script>
+</html>
