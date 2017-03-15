@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;padding: 0;
+			}
+			@-webkit-keyframes xuan{
+				from{}
+				to{transform: rotateY(1800deg);}
+			}
+			#warp{
+				width: 180px;height: 400px;position: relative;margin: 100px auto;
+				transform-style: preserve-3d;
+				transform: rotateY(0deg);
+				/*transition: all 10s ease-in-out 0s;*/
+				animation: xuan 50s linear alternate infinite;
+				/*transform: rotateY(30deg) rotateX(30deg) rotateZ(0deg);*/
+			}
+			/*#warp:hover{
+				transform: rotateY(360deg);
+			}*/
+			.main{
+				opacity: 0.5;
+				width: 50px;height: 50px;position: absolute;background: green;font-size: 25px;line-height: 50px;text-align: center;font-weight: 900;
+			}
+			/*.main:nth-child(1){
+				transform: rotateY(30deg) translateY(-20px) translateZ(200px);
+			}
+			.main:nth-child(2){
+				transform: rotateY(60deg) translateY(0px) translateZ(200px);
+			}
+			.main:nth-child(3){
+				transform: rotateY(90deg) translateY(20px) translateZ(200px);
+			}
+			.main:nth-child(4){
+				transform: rotateY(120deg) translateY(40px) translateZ(200px);
+			}
+			.main:nth-child(5){
+				transform: rotateY(150deg) translateY(60px) translateZ(200px);
+			}
+			.main:nth-child(6){
+				transform: rotateY(180deg) translateY(80px) translateZ(200px);
+			}
+			.main:nth-child(7){
+				transform: rotateY(210deg) translateY(100px) translateZ(200px);
+			}
+			.main:nth-child(8){
+				transform: rotateY(240deg) translateY(120px) translateZ(200px);
+			}
+			.main:nth-child(9){
+				transform: rotateY(270deg) translateY(140px) translateZ(200px);
+			}
+			.main:nth-child(10){
+				transform: rotateY(300deg) translateY(160px) translateZ(200px);
+			}
+			.main:nth-child(11){
+				transform: rotateY(330deg) translateY(180px) translateZ(200px);
+			}
+			.main:nth-child(12){
+				transform: rotateY(360deg) translateY(200px) translateZ(200px);
+			}*/
+			
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<div class="main">1</div>
+			<div class="main">2</div>
+			<div class="main">3</div>
+			<div class="main">4</div>
+			<div class="main">5</div>
+			<div class="main">6</div>
+			<div class="main">7</div>
+			<div class="main">8</div>
+			<div class="main">9</div>
+			<div class="main">10</div>
+			<div class="main">11</div>
+			<div class="main">12</div>
+			<div class="main">13</div>
+			<div class="main">14</div>
+			<div class="main">15</div>
+			<div class="main">16</div>
+			<div class="main">17</div>
+			<div class="main">18</div>
+			<div class="main">19</div>
+			<div class="main">20</div>
+			<div class="main">21</div>
+			<div class="main">22</div>
+			<div class="main">23</div>
+			<div class="main">24</div>
+			<div class="main">25</div>
+			<div class="main">26</div>
+			<div class="main">27</div>
+			<div class="main">28</div>
+			<div class="main">29</div>
+			<div class="main">30</div>
+			<div class="main">31</div>
+			<div class="main">32</div>
+			<div class="main">33</div>
+			<div class="main">34</div>
+			<div class="main">35</div>
+			<div class="main">36</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var mains = document.querySelectorAll(".main");
+		for (var i = 0 ; i < mains.length ; i++) {
+			mains[i].style.transform = "rotateY("+30*i+"deg) translateY("+20*i+"px) translateZ(200px)";
+		}
+	</script>
+</html>

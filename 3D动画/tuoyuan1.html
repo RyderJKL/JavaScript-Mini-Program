@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>椭圆</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#main{
+			position: relative;
+			transition: all 10s ease-in;
+			transform-style: preserve-3d;
+			width: 1000px;
+			height: 1000px;
+		}
+		#main:hover{
+			transform: rotateX(720deg)
+						rotateY(720deg);
+		}
+		#main div{
+			width: 50px;
+			height: 50px;
+			background-color: green;			
+			opacity: 0.5;
+			position: absolute;
+			margin-top: 475px;
+			margin-left: 475px;			
+		}
+		#y1{
+			transform: rotateX(36deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y2{
+			transform: rotateX(72deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y3{
+			transform: rotateX(108deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y4{
+			transform: rotateX(144deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y5{
+			transform: rotateX(180deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y6{
+			transform: rotateX(216deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y7{
+			transform: rotateX(252deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y8{
+			transform: rotateX(288deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y9{
+			transform: rotateX(324deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y10{
+			transform: rotateX(360deg)
+						rotateY(0deg)
+						translateZ(200px);
+		}
+		#y11{
+			transform: rotateX(36deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y12{
+			transform: rotateX(72deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y13{
+			transform: rotateX(108deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y14{
+			transform: rotateX(144deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y15{
+			transform: rotateX(180deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y16{
+			transform: rotateX(216deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y17{
+			transform: rotateX(252deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y18{
+			transform: rotateX(288deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y19{
+			transform: rotateX(324deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y20{
+			transform: rotateX(360deg)
+						rotateY(5deg)
+						translateZ(200px)
+						translateX(80px);
+		}
+		#y21{
+			transform: rotateX(36deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y22{
+			transform: rotateX(72deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y23{
+			transform: rotateX(108deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y24{
+			transform: rotateX(144deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y25{
+			transform: rotateX(180deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y26{
+			transform: rotateX(216deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y27{
+			transform: rotateX(252deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y28{
+			transform: rotateX(288deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y29{
+			transform: rotateX(324deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y30{			
+			transform: rotateX(360deg)
+						rotateY(10deg)
+						translateZ(210px)
+						translateX(160px);
+		}
+		#y31{
+			transform: rotateX(36deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y32{
+			transform: rotateX(72deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y33{
+			transform: rotateX(108deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y34{
+			transform: rotateX(144deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y35{
+			transform: rotateX(180deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y36{
+			transform: rotateX(216deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y37{
+			transform: rotateX(252deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y38{
+			transform: rotateX(288deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y39{
+			transform: rotateX(324deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y40{			
+			transform: rotateX(360deg)
+						rotateY(20deg)
+						translateZ(241px)
+						translateX(220px);
+		}
+		#y41{
+			transform: rotateX(36deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y42{
+			transform: rotateX(72deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y43{
+			transform: rotateX(108deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y44{
+			transform: rotateX(144deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y45{
+			transform: rotateX(180deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y46{
+			transform: rotateX(216deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y47{
+			transform: rotateX(252deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y48{
+			transform: rotateX(288deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y49{
+			transform: rotateX(324deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y50{	
+			transform: rotateX(360deg)
+						rotateY(31deg)
+						translateZ(286px)
+						translateX(263px);
+		}
+		#y51{
+			transform: rotateX(36deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y52{
+			transform: rotateX(72deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y53{
+			transform: rotateX(108deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y54{
+			transform: rotateX(144deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y55{
+			transform: rotateX(180deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y56{
+			transform: rotateX(216deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y57{
+			transform: rotateX(252deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y58{
+			transform: rotateX(288deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y59{
+			transform: rotateX(324deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y60{			
+			transform: rotateX(360deg)
+						rotateY(45deg)
+						translateZ(350px)
+						translateX(280px);
+		}
+		#y61{
+			transform: rotateX(36deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y62{
+			transform: rotateX(72deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y63{
+			transform: rotateX(108deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y64{
+			transform: rotateX(144deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y65{
+			transform: rotateX(180deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y66{
+			transform: rotateX(216deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y67{
+			transform: rotateX(252deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y68{
+			transform: rotateX(288deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y69{
+			transform: rotateX(324deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y70{
+			transform: rotateX(360deg)
+						rotateY(-5deg)
+						translateZ(200px)
+						translateX(-80px);
+		}
+		#y71{
+			transform: rotateX(36deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y72{
+			transform: rotateX(72deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y73{
+			transform: rotateX(108deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y74{
+			transform: rotateX(144deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y75{
+			transform: rotateX(180deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y76{
+			transform: rotateX(216deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y77{
+			transform: rotateX(252deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y78{
+			transform: rotateX(288deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y79{
+			transform: rotateX(324deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y80{			
+			transform: rotateX(360deg)
+						rotateY(-10deg)
+						translateZ(210px)
+						translateX(-160px);
+		}
+		#y81{
+			transform: rotateX(36deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y82{
+			transform: rotateX(72deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y83{
+			transform: rotateX(108deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y84{
+			transform: rotateX(144deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y85{
+			transform: rotateX(180deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y86{
+			transform: rotateX(216deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y87{
+			transform: rotateX(252deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y88{
+			transform: rotateX(288deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y89{
+			transform: rotateX(324deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y90{			
+			transform: rotateX(360deg)
+						rotateY(-20deg)
+						translateZ(241px)
+						translateX(-220px);
+		}
+		#y91{
+			transform: rotateX(36deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y92{
+			transform: rotateX(72deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y93{
+			transform: rotateX(108deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y94{
+			transform: rotateX(144deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y95{
+			transform: rotateX(180deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y96{
+			transform: rotateX(216deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y97{
+			transform: rotateX(252deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y98{
+			transform: rotateX(288deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y99{
+			transform: rotateX(324deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y100{	
+			transform: rotateX(360deg)
+						rotateY(-31deg)
+						translateZ(286px)
+						translateX(-263px);
+		}
+		#y101{
+			transform: rotateX(36deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y102{
+			transform: rotateX(72deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y103{
+			transform: rotateX(108deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y104{
+			transform: rotateX(144deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y105{
+			transform: rotateX(180deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y106{
+			transform: rotateX(216deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y107{
+			transform: rotateX(252deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y108{
+			transform: rotateX(288deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y109{
+			transform: rotateX(324deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+		#y110{			
+			transform: rotateX(360deg)
+						rotateY(-45deg)
+						translateZ(350px)
+						translateX(-280px);
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<div id="y1">1</div>
+		<div id="y2">2</div>
+		<div id="y3">3</div>
+		<div id="y4">4</div>
+		<div id="y5"></div>
+		<div id="y6"></div>
+		<div id="y7"></div>
+		<div id="y8"></div>
+		<div id="y9"></div>
+		<div id="y10"></div>
+		<div id="y11"></div>
+		<div id="y12"></div>
+		<div id="y13"></div>
+		<div id="y14"></div>
+		<div id="y15"></div>
+		<div id="y16"></div>
+		<div id="y17"></div>
+		<div id="y18"></div>
+		<div id="y19"></div>
+		<div id="y20"></div>
+		<div id="y21"></div>
+		<div id="y22"></div>
+		<div id="y23"></div>
+		<div id="y24"></div>
+		<div id="y25"></div>
+		<div id="y26"></div>
+		<div id="y27"></div>
+		<div id="y28"></div>
+		<div id="y29"></div>
+		<div id="y30"></div>
+		<div id="y31"></div>
+		<div id="y32"></div>
+		<div id="y33"></div>
+		<div id="y34"></div>
+		<div id="y35"></div>
+		<div id="y36"></div>
+		<div id="y37"></div>
+		<div id="y38"></div>
+		<div id="y39"></div>
+		<div id="y40"></div>
+		<div id="y41"></div>
+		<div id="y42"></div>
+		<div id="y43"></div>
+		<div id="y44"></div>
+		<div id="y45"></div>
+		<div id="y46"></div>
+		<div id="y47"></div>
+		<div id="y48"></div>
+		<div id="y49"></div>
+		<div id="y50"></div>
+		<div id="y51"></div>
+		<div id="y52"></div>
+		<div id="y53"></div>
+		<div id="y54"></div>
+		<div id="y55"></div>
+		<div id="y56"></div>
+		<div id="y57"></div>
+		<div id="y58"></div>
+		<div id="y59"></div>
+		<div id="y60"></div>
+		<div id="y61"></div>
+		<div id="y62"></div>
+		<div id="y63"></div>
+		<div id="y64"></div>
+		<div id="y65"></div>
+		<div id="y66"></div>
+		<div id="y67"></div>
+		<div id="y68"></div>
+		<div id="y69"></div>
+		<div id="y70"></div>
+		<div id="y71"></div>
+		<div id="y72"></div>
+		<div id="y73"></div>
+		<div id="y74"></div>
+		<div id="y75"></div>
+		<div id="y76"></div>
+		<div id="y77"></div>
+		<div id="y78"></div>
+		<div id="y79"></div>
+		<div id="y80"></div>
+		<div id="y81"></div>
+		<div id="y82"></div>
+		<div id="y83"></div>
+		<div id="y84"></div>
+		<div id="y85"></div>
+		<div id="y86"></div>
+		<div id="y87"></div>
+		<div id="y88"></div>
+		<div id="y89"></div>
+		<div id="y90"></div>
+		<div id="y91"></div>
+		<div id="y92"></div>
+		<div id="y93"></div>
+		<div id="y94"></div>
+		<div id="y95"></div>
+		<div id="y96"></div>
+		<div id="y97"></div>
+		<div id="y98"></div>
+		<div id="y99"></div>
+		<div id="y100"></div>
+		<div id="y101"></div>
+		<div id="y102"></div>
+		<div id="y103"></div>
+		<div id="y104"></div>
+		<div id="y105"></div>
+		<div id="y106"></div>
+		<div id="y107"></div>
+		<div id="y108"></div>
+		<div id="y109"></div>
+		<div id="y110"></div>
+	</div>
+</body>
+</html>
